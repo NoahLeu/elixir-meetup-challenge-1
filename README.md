@@ -1,1 +1,1 @@
-# elixir-meetup-challenge-1
+# elixir-meetup-challenges
