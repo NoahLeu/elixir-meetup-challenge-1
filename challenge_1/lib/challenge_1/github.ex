@@ -7,10 +7,13 @@ defmodule Challenge1.Github do
   @access_token Application.compile_env!(:challenge_1, :github_access_token)
 
   def get_orga(orga) do
-    get!("#{@endpoint}/orgs/#{orga}", [], [auth: {@access_token, ""}])
+    headers = [{:"Authorization", "Bearer #{@access_token}"}]
+    get!("#{@endpoint}/orgs/#{orga}", headers, [])
+    |> IO.inspect(label: "get_orga")
   end
 
   def get_repos(orga) do
-    get!("#{@endpoint}/orgs/#{orga}/repos", [], [auth: {@access_token, ""}])
+    headers = [{:"Authorization", "Bearer #{@access_token}"}]
+    get!("#{@endpoint}/orgs/#{orga}/repos", headers, [])
   end
 end

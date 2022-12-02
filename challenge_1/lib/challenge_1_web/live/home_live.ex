@@ -3,18 +3,27 @@ defmodule Challenge1Web.HomeLive do
 
   alias Challenge1.Github
 
-  def mount(_params, _session, socket) do
-    orga =
-      Github.get_orga("elixir-meetup-rostock")
-      |> Map.get(:body)
-      |> Jason.decode!()
+  #@organization_name "altow-de"
+  @organization_name "elixir-meetup-rostock"
 
-    repos =
-      Github.get_repos("elixir-meetup-rostock")
-      |> Map.get(:body)
-      |> Jason.decode!()
-      |> IO.inspect(label: "repos")
+  def mount(_params, _session, socket) do
+    orga = load_orga()
+    repos = load_repos()
 
     {:ok, assign(socket, orga: orga, repos: repos)}
+  end
+
+  defp load_orga() do
+    orga =
+      Github.get_orga(@organization_name)
+      |> Map.get(:body)
+      |> Jason.decode!()
+  end
+
+  defp load_repos() do
+    repos =
+      Github.get_repos(@organization_name)
+      |> Map.get(:body)
+      |> Jason.decode!()
   end
 end

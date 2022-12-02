@@ -1,10 +1,10 @@
 <section class="page-container">
-  <h1>Github Connection to Repo</h1>
+  <h1 class="text-3xl font-bold mb-4">Github Connection</h1>
   <a
     href="https://github.com/Elixir-Meetup-Rostock"
     target="_blank"
     rel="noopener noreferrer"
-    class="underline decoration-purple-300 mb-10">
+    class="mb-10 bg-white text-purple-600 font-bold py-2 px-4 w-fit rounded-md transition-all duration-150 ease-in-out hover:bg-gray-200">
     Zum Meetup
   </a>
   <%= if @orga != nil do %>
@@ -13,15 +13,23 @@
       <p class="text-3xl font-bold mb-4"><%= @orga["login"] %></p>
       <p><%= @orga["public_repos"] %> öffentliche Repos</p>
       <p><%= @orga["followers"] %> Follower</p>
-    </div>
     <%= if @repos do %>
-      <div class="flex flex-row flex-wrap bg-gray-600 p-6">
+      <h2 class="text-xl mt-10">Github Repos</h2>
+      <div class="grid grid-cols-4 gap-6 bg-gray-600 mt-4">
         <%= for repo <- @repos do %>
-          <div class="rounded-md w-56 h-20 mb-4 mr-6 bg-white flex flex-col text-gray-600">
-            <p>Sprache: <%= repo["language"] %></p>
-          </div>
+          <%= if repo["name"] != ".github" do %>
+          <a href={repo["url"]}>
+            <div class="rounded-md w-72 h-full p-4 bg-white hover:bg-gray-200 transition-all duration-150 ease-in-out text-gray-800 flex flex-col">
+              <p class="text-lg uppercase text-purple-600 font-bold"><%= repo["name"] %></p>
+              <%= if repo["language"] != nil do %>
+                <p>Sprache: <%= repo["language"] %></p>
+              <% end %>
+            </div>
+          </a>
+          <% end %>
         <% end %>
       </div>
     <% end %>
+    </div>
   <% end %>
 </section>
