@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content={csrf_token_value()}>
+    <%= live_title_tag assigns[:page_title] || "Challenge1", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  </head>
+  <body class="flex min-h-screen flex-col w-full bg-gray-900 text-white">
+    <header class="w-full bg-gray-800 h-fit mb-10">
+      <div class="page-container py-6 h-fit justify-between">
+        <p class="font-bold text-3xl">Elixir Meetup Rostock</p>
+      </div>
+    </header>
+    <%= @inner_content %>
+  </body>
+</html>
