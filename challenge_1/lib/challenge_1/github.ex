@@ -9,7 +9,6 @@ defmodule Challenge1.Github do
   def get_orga(orga) do
     headers = [{:"Authorization", "Bearer #{@access_token}"}]
     get!("#{@endpoint}/orgs/#{orga}", headers, [])
-    |> IO.inspect(label: "get_orga")
   end
 
   def get_repos(orga) do

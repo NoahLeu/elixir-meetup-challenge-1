@@ -14,16 +14,14 @@ defmodule Challenge1Web.HomeLive do
   end
 
   defp load_orga() do
-    orga =
-      Github.get_orga(@organization_name)
-      |> Map.get(:body)
-      |> Jason.decode!()
+    Github.get_orga(@organization_name)
+    |> Map.get(:body)
+    |> Jason.decode!()
   end
 
   defp load_repos() do
-    repos =
-      Github.get_repos(@organization_name)
-      |> Map.get(:body)
-      |> Jason.decode!()
+    Github.get_repos(@organization_name)
+    |> Map.get(:body)
+    |> Jason.decode!()
   end
 end
